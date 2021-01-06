@@ -14,10 +14,22 @@ module.exports = {
    module: {
       rules: [
          {
-            test: /\.jsx?$/,
+            test: /\.js$|jsx/,
             exclude: /node_modules/,
             loader: 'babel-loader',
-         }
+         },
+         {
+           test: /\.(eot|svg|ttf|woff|woff2|otf)$/,
+           use: [
+             {
+               loader: 'file-loader',
+             },
+           ],
+         },
+          {
+            test: /\.css$/i,
+            use: ["style-loader", "css-loader"],
+          },
       ]
    },
    plugins:[
