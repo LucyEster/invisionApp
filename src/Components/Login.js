@@ -6,7 +6,7 @@ import {STitle, SSubtitle, SRegular, SError} from "./SText";
 import {colors} from "../assets/colors";
 import Flex from '@react-css/flex';
 import { GoogleLogin } from 'react-google-login';
-
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const responseGoogle = (response) => {
   console.log(response);
@@ -29,11 +29,12 @@ class Login extends Component{
     super(props);
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleChangePass = this.handleChangePass.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.emailHandler = this.emailHandler.bind(this);
 
     this.state = {
-      input: {},
+      input: {email: {value : "" }, password: {value : "" }},
       valid: true,
       value: "",
     };
@@ -46,6 +47,14 @@ class Login extends Component{
     this.setState({input, valid : this.emailHandler(input)});
   }
 
+  handleChangePass(event) {
+    let input = this.state.input;
+    input[event.target.name]['value'] =  event.target.value;
+    input[event.target.name]['valid'] = this.emailHandler(input);
+
+    this.setState({input});
+  }
+
   handleSubmit(event) {
     // alert('Uma dissertação foi enviada: ' + this.state.value);
     // event.preventDefault();
@@ -54,15 +63,18 @@ class Login extends Component{
   emailHandler(input) {
       var isValid = true;
 
-      if ( input && !input["email"]) {
-        isValid = false;
-      }
-
-      if (input && typeof input["email"] !== "undefined") {
+      // if ( input && !input["email"]) {
+      //   isValid = false;
+      // }
+      if (input && input["email"] && typeof input["email"] !== "undefined") {
         var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-        if (!pattern.test(input["email"])) {
+        if (!pattern.test(input["email"]['value'])) {
           isValid = false;
         }
+      }
+
+      if (input && typeof input["password"] !== "undefined" && input["password"]['value'] == "") {
+          isValid = false;
       }
 
       return isValid;
@@ -81,23 +93,28 @@ class Login extends Component{
              <Flex column alignItemsStart   style={{width: "18em", }}>
              <SRegular>Name</SRegular>
              <Flex.Item column="true" flex='1 1'>
-               <SInput value={this.state.input['email']} valid={this.state.valid} input={this.state.input} onChange={this.handleChange}></SInput>
+               <SInput value={this.state.input['email']['value']} valid={this.state.input['email']['valid']} input={this.state.input} onChange={this.handleChangePass}></SInput>
              </Flex.Item>
              {
-               !this.state.valid ? <Flex.Item flex= '1 1' alignSelf="flex-end">
+               !this.state.input['email']['valid'] ? <Flex.Item flex= '1 1' alignSelf="flex-end">
               <SError>The email field is incorrect.</SError>
              </Flex.Item> : null
              }
              <SRegular>Password</SRegular>
              <Flex.Item flex='1 1'>
-             <SPasswordInput></SPasswordInput>
+             <SPasswordInput value={this.state.input['password']['value']} valid={this.state.input['password']['valid']} input={this.state.input} onChange={this.handleChangePass}></SPasswordInput>
              </Flex.Item>
-             <Flex.Item flex= '1 1' alignSelf="flex-end">
-              <SRegular>Forgot Password?</SRegular>
-             </Flex.Item>
+             {
+               !this.state.input['password']['valid'] ? <Flex.Item flex= '1 1' alignSelf="flex-end">
+              <SError>This field Cannot be empty.</SError>
+             </Flex.Item> : null
+             }
+            <Flex.Item flex= '1 1' alignSelf="flex-end">
+             <SRegular>Forgot Password?</SRegular>
+            </Flex.Item>
              </Flex>
              <Flex.Item flex='1 0'>
-               <SButton>Sign In</SButton>
+               <SButton enabled={this.state.input['email']['valid'] && this.state.input['password']['valid']}>Sign In</SButton>
              </Flex.Item>
              <Flex.Item flex='1 0'>
               <Flex row>
@@ -133,7 +150,7 @@ class Login extends Component{
                    <SRegular>Invision?</SRegular>
                  </Flex.Item>
                  <Flex.Item flex='3 0'>
-                   <SRegular>Create Account</SRegular>
+                 <Link to="/signup"><SRegular>Create Account</SRegular></Link>
                  </Flex.Item>
              </Flex>
             </Flex.Item>

@@ -15,7 +15,7 @@ class GButton extends Component {
       const { icon } = this.props;
 
         return(
-            <button className={ this.props.className } onClick={ this.props.onClick || this.click }>
+            <button enabled={this.props.enabled} className={ this.props.className } onClick={ this.props.onClick || this.click }>
             <Flex row alignItemsCenter>
                 {icon && <Icon type={icon}/>}
                 { this.props.children }
