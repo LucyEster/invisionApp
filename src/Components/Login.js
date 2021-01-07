@@ -2,9 +2,16 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import {SButton, GmailButton} from "./SButton";
 import {SInput, SPasswordInput} from "./SInputText";
-import {STitle, SSubtitle, SRegular} from "./SText";
+import {STitle, SSubtitle, SRegular, SError} from "./SText";
 import {colors} from "../assets/colors";
 import Flex from '@react-css/flex';
+import { GoogleLogin } from 'react-google-login';
+
+
+const responseGoogle = (response) => {
+  console.log(response);
+}
+
 
 const Separator = styled.div`
 color: ${colors.white};
@@ -33,7 +40,6 @@ class Login extends Component{
   }
 
   handleChange(event) {
-    console.log("changed");
     let input = this.state.input;
     input[event.target.name] = event.target.value;
 
@@ -77,6 +83,11 @@ class Login extends Component{
              <Flex.Item column="true" flex='1 1'>
                <SInput value={this.state.input['email']} valid={this.state.valid} input={this.state.input} onChange={this.handleChange}></SInput>
              </Flex.Item>
+             {
+               !this.state.valid ? <Flex.Item flex= '1 1' alignSelf="flex-end">
+              <SError>The email field is incorrect.</SError>
+             </Flex.Item> : null
+             }
              <SRegular>Password</SRegular>
              <Flex.Item flex='1 1'>
              <SPasswordInput></SPasswordInput>
@@ -86,7 +97,7 @@ class Login extends Component{
              </Flex.Item>
              </Flex>
              <Flex.Item flex='1 0'>
-               <SButton>Login</SButton>
+               <SButton>Sign In</SButton>
              </Flex.Item>
              <Flex.Item flex='1 0'>
               <Flex row>
@@ -102,7 +113,16 @@ class Login extends Component{
               </Flex>
              </Flex.Item>
             <Flex.Item flex='1 0'>
-              <GmailButton>Entre com o Gmail</GmailButton>
+            <GoogleLogin
+                clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+                render={renderProps => (
+                  <GmailButton icon={'GOOGLE_ICON'} onClick={renderProps.onClick} style={{margin: "2em"}}><SRegular>Sign In with Google</SRegular></GmailButton>
+                )}
+                buttonText="Sign in with Google"
+                onSuccess={responseGoogle}
+                onFailure={responseGoogle}
+                cookiePolicy={'single_host_origin'}
+                />
             </Flex.Item>
             <Flex.Item flex='1 0'>
              <Flex row justifyContent = "center">

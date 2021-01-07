@@ -13,10 +13,10 @@ function App() {
     return(
       <div>
        <Flex row flex= '1 0'>
-          <Flex.Item flex='1 0' style={{margin: "0em"}}>
+          <Flex.Item flex='1 1' style={{margin: "0em"}}>
             <MajorCarousel></MajorCarousel>
           </Flex.Item>
-          <Flex.Item flex='1 0'>
+          <Flex.Item flex='1 1'>
             <SLogin></SLogin>
           </Flex.Item>
        </Flex>

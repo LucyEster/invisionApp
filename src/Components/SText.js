@@ -30,9 +30,18 @@ const SSubtitle = styled(STitle)`
 const SRegular = styled(STitle)`
     color: ${colors.regularLight};
     font-size: 0.7rem;
-    margin: 0rem;
-    padding: 0rem 0rem;
+    margin: 0.2rem;
+    padding: 0.2rem 0.2rem;
+    font-family: "MulishRegular";
+    font-weight: 'bold';
+`;
+
+const SError = styled(STitle)`
+    color: ${colors.error};
+    font-size: 0.7rem;
+    margin: 0.2rem;
+    padding: 0.2rem 0.2rem;
     font-family: "MulishRegular";
 `;
 
-export {STitle, STitleLight, SSubtitle, SRegular};
+export {STitle, STitleLight, SSubtitle, SRegular, SError};
