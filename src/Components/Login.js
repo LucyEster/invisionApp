@@ -29,7 +29,6 @@ class Login extends Component{
     super(props);
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleChangePass = this.handleChangePass.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.emailHandler = this.emailHandler.bind(this);
 
@@ -41,13 +40,6 @@ class Login extends Component{
   }
 
   handleChange(event) {
-    let input = this.state.input;
-    input[event.target.name] = event.target.value;
-
-    this.setState({input, valid : this.emailHandler(input)});
-  }
-
-  handleChangePass(event) {
     let input = this.state.input;
     input[event.target.name]['value'] =  event.target.value;
     input[event.target.name]['valid'] = this.emailHandler(input);
@@ -93,7 +85,7 @@ class Login extends Component{
              <Flex column alignItemsStart   style={{width: "18em", }}>
              <SRegular>Name</SRegular>
              <Flex.Item column="true" flex='1 1'>
-               <SInput value={this.state.input['email']['value']} valid={this.state.input['email']['valid']} input={this.state.input} onChange={this.handleChangePass}></SInput>
+               <SInput value={this.state.input['email']['value']} valid={this.state.input['email']['valid']} input={this.state.input} onChange={this.handleChange}></SInput>
              </Flex.Item>
              {
                !this.state.input['email']['valid'] ? <Flex.Item flex= '1 1' alignSelf="flex-end">
@@ -102,7 +94,7 @@ class Login extends Component{
              }
              <SRegular>Password</SRegular>
              <Flex.Item flex='1 1'>
-             <SPasswordInput value={this.state.input['password']['value']} valid={this.state.input['password']['valid']} input={this.state.input} onChange={this.handleChangePass}></SPasswordInput>
+             <SPasswordInput value={this.state.input['password']['value']} valid={this.state.input['password']['valid']} input={this.state.input} onChange={this.handleChange}></SPasswordInput>
              </Flex.Item>
              {
                !this.state.input['password']['valid'] ? <Flex.Item flex= '1 1' alignSelf="flex-end">

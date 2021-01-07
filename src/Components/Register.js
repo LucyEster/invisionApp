@@ -34,7 +34,7 @@ class Register extends Component{
     this.emailHandler = this.emailHandler.bind(this);
 
     this.state = {
-      input: {email: {value : "" }, password: {value : "" }},
+      input: {email: {value : "" }, password: {value : "" }, confirmPassword: {value : "" }},
       valid: true,
       value: "",
     };
@@ -110,7 +110,7 @@ class Register extends Component{
            </Flex.Item>
             </Flex>
             <Flex.Item flex='1 0'>
-              <SButton enabled={this.state.input['email']['valid'] && this.state.input['password']['valid']}>Sign In</SButton>
+              <SButton enabled={this.state.input['email']['valid'] && this.state.input['password']['valid']}>Sign Up</SButton>
             </Flex.Item>
             <Flex.Item flex='1 0'>
              <Flex row>
