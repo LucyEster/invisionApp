@@ -10,15 +10,15 @@ class MajorCarousel extends Component {
         return (
             <Carousel swipeable={true} showThumbs={false} infiniteLoop={true} autoPlay={true} showArrows={false}  >
                 <div style={{background: colors.secondary,  paddingTop: "5em", paddingBottom: "5em"}}>
-                    <img src="assets/component.png"/>
+                    <img src={process.env.PUBLIC_URL + '/img/component.png'}/>
                     <STitleLight>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sodales </STitleLight>
                 </div>
                 <div style={{background: colors.secondary, paddingTop: "5em",  paddingBottom: "5em"}}>
-                    <img src="assets/component.png" size="200px" />
+                    <img src={process.env.PUBLIC_URL + '/img/component.png'} />
                     <STitleLight>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam congue, nulla a imperdiet suscipit, tortor dui commodo elit. </STitleLight>
                 </div>
                 <div style={{background: colors.secondary, paddingTop: "5em",  paddingBottom: "5em"}}>
-                    <img src="assets/component.png" />
+                    <img src={process.env.PUBLIC_URL + '/img/component.png'} />
                     <STitleLight>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sodales </STitleLight>
                 </div>
             </Carousel>
@@ -27,4 +27,3 @@ class MajorCarousel extends Component {
 }
 
 export default MajorCarousel;
-// ReactDOM.render(<MajorCarousel/>, document.querySelector('.major-carousel'));

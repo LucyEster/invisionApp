@@ -23,6 +23,7 @@ class Login extends Component{
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.emailHandler = this.emailHandler.bind(this);
 
     this.state = {
       input: {},
@@ -33,15 +34,15 @@ class Login extends Component{
 
   handleChange(event) {
     console.log("changed");
-    // let input = this.state.input;
-    // input[event.target.name] = event.target.value;
-    //
-    // this.setState({input, valid : emailHandler(input)});
+    let input = this.state.input;
+    input[event.target.name] = event.target.value;
+
+    this.setState({input, valid : this.emailHandler(input)});
   }
 
   handleSubmit(event) {
-    alert('Uma dissertação foi enviada: ' + this.state.value);
-    event.preventDefault();
+    // alert('Uma dissertação foi enviada: ' + this.state.value);
+    // event.preventDefault();
   }
 
   emailHandler(input) {
@@ -74,7 +75,7 @@ class Login extends Component{
              <Flex column alignItemsStart   style={{width: "18em", }}>
              <SRegular>Name</SRegular>
              <Flex.Item column="true" flex='1 1'>
-               <SInput value={this.state.value} valid={this.state.valid} input={this.state.input} onChange={this.handleChange.bind(this)}></SInput>
+               <SInput value={this.state.input['email']} valid={this.state.valid} input={this.state.input} onChange={this.handleChange}></SInput>
              </Flex.Item>
              <SRegular>Password</SRegular>
              <Flex.Item flex='1 1'>
