@@ -33,7 +33,7 @@ class Login extends Component{
     this.emailHandler = this.emailHandler.bind(this);
 
     this.state = {
-      input: {email: {value : "" }, password: {value : "" }},
+      input: {email: {value : undefined }, password: {value : undefined }},
       valid: true,
       value: "",
     };

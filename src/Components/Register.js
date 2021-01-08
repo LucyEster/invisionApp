@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import {SButton, GmailButton} from "./SButton";
-import {SInput, SPasswordInput} from "./SInputText";
+import {STextInput, SInput, SPasswordInput} from "./SInputText";
 import {STitle, SSubtitle, SRegular, SError} from "./SText";
 import {colors} from "../assets/colors";
 import Flex from '@react-css/flex';
@@ -29,25 +29,17 @@ class Register extends Component{
     super(props);
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleChangePass = this.handleChangePass.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.emailHandler = this.emailHandler.bind(this);
 
     this.state = {
-      input: {email: {value : "" }, password: {value : "" }, confirmPassword: {value : "" }},
+      input: {text: {value : undefined}, email: {value : undefined }, password: {value : undefined }},
       valid: true,
       value: "",
     };
   }
 
   handleChange(event) {
-    let input = this.state.input;
-    input[event.target.name] = event.target.value;
-
-    this.setState({input, valid : this.emailHandler(input)});
-  }
-
-  handleChangePass(event) {
     let input = this.state.input;
     input[event.target.name]['value'] =  event.target.value;
     input[event.target.name]['valid'] = this.emailHandler(input);
@@ -74,6 +66,11 @@ class Register extends Component{
           isValid = false;
       }
 
+      if (input && typeof input["text"] !== "undefined" && input["text"]['value'] == "") {
+          isValid = false;
+      }
+
+
       return isValid;
     }
 
@@ -87,9 +84,18 @@ class Register extends Component{
             <SSubtitle>Welcome to Invision</SSubtitle>
             </Flex.Item>
             <Flex column alignItemsStart   style={{width: "18em", }}>
-            <SRegular>Name</SRegular>
+            <SRegular>Full Name</SRegular>
             <Flex.Item column="true" flex='1 1'>
-              <SInput value={this.state.input['email']['value']} valid={this.state.input['email']['valid']} input={this.state.input} onChange={this.handleChangePass}></SInput>
+              <STextInput value={this.state.input['text']['value']} valid={this.state.input['text']['valid']} input={this.state.input} onChange={this.handleChange}></STextInput>
+            </Flex.Item>
+            {
+              !this.state.input['text']['valid'] ? <Flex.Item flex= '1 1' alignSelf="flex-end">
+             <SError>The email field is incorrect.</SError>
+            </Flex.Item> : null
+            }
+            <SRegular>Email</SRegular>
+            <Flex.Item column="true" flex='1 1'>
+              <SInput value={this.state.input['email']['value']} valid={this.state.input['email']['valid']} input={this.state.input} onChange={this.handleChange}></SInput>
             </Flex.Item>
             {
               !this.state.input['email']['valid'] ? <Flex.Item flex= '1 1' alignSelf="flex-end">
@@ -98,7 +104,7 @@ class Register extends Component{
             }
             <SRegular>Password</SRegular>
             <Flex.Item flex='1 1'>
-            <SPasswordInput value={this.state.input['password']['value']} valid={this.state.input['password']['valid']} input={this.state.input} onChange={this.handleChangePass}></SPasswordInput>
+            <SPasswordInput value={this.state.input['password']['value']} valid={this.state.input['password']['valid']} input={this.state.input} onChange={this.handleChange}></SPasswordInput>
             </Flex.Item>
             {
               !this.state.input['password']['valid'] ? <Flex.Item flex= '1 1' alignSelf="flex-end">
@@ -140,7 +146,7 @@ class Register extends Component{
            <Flex.Item flex='1 0'>
             <Flex row justifyContent = "center">
                 <Flex.Item flex='1 0'>
-                  <SRegular>Already </SRegular>
+                  <SRegular>Already on</SRegular>
                 </Flex.Item>
                 <Flex.Item flex='2 0'>
                   <SRegular>Invision?</SRegular>

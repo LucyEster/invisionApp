@@ -39,8 +39,8 @@ const SRegular = styled(STitle)`
 const SError = styled(STitle)`
     color: ${colors.error};
     font-size: 0.7rem;
-    margin: 0.2rem;
-    padding: 0.2rem 0.2rem;
+    margin: 0rem;
+    padding: 0rem 0rem;
     font-family: "MulishRegular";
 `;
 

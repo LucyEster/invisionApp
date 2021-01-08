@@ -30,7 +30,14 @@ const SPasswordInput = styled(SInput).attrs({
   id: "password",
   placeholder:"Enter password"
 })`
-
 `;
 
-export {SInput, SPasswordInput};
+const STextInput = styled(SInput).attrs({
+  type: "text",
+  name: "text",
+  id: "text",
+  placeholder:"Enter full name"
+})`
+`;
+
+export {STextInput, SInput, SPasswordInput};
