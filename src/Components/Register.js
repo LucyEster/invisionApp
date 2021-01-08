@@ -63,7 +63,7 @@ class Register extends Component{
         }
       }
 
-      if (input && typeof input["password"] !== "undefined" && input["password"]['value'] == "") {
+      if (input && typeof input["password"] !== "undefined" && input["password"]['value'].length < 6) {
           isValid = false;
       }
 
