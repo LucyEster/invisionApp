@@ -36,12 +36,8 @@ const SRegular = styled(STitle)`
     font-weight: 'bold';
 `;
 
-const SError = styled(STitle)`
+const SError = styled(SRegular)`
     color: ${colors.error};
-    font-size: 0.7rem;
-    margin: 0rem;
-    padding: 0rem 0rem;
-    font-family: "MulishRegular";
 `;
 
 export {STitle, STitleLight, SSubtitle, SRegular, SError};

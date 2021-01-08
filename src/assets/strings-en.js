@@ -12,4 +12,9 @@ export const strings = {
   "lblNew" : "New",
   "lblCreateAccount": "Create Account",
   "lblInvisionQuestion" : "Invision?",
+  "txtLorem" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sodales",
+  "lblGettingStarted" : "Getting started",
+  "lblFullName": "Full Name",
+  "lblSignUp" : "Sign Up",
+  "lblAlreadyOn" : "Already",
 }
