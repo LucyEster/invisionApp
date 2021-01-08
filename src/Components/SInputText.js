@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import {colors} from "../assets/colors";
+import {dimensions} from "../assets/dimensions";
 
 const SInput = styled.input.attrs(props => ({
   type: "text",
@@ -14,14 +15,14 @@ const SInput = styled.input.attrs(props => ({
   value: props.value,
   valid: props.valid,
 }))`
-  width:  260px;
-  border: 0px solid white;
-  border-bottom: 1px solid ${props => props.valid ?  colors.primary : colors.error};
+  width: ${dimensions.inptWidth} ;
+  border: ${dimensions.inptBorder} solid white;
+  border-bottom: ${dimensions.inptBorderBottom} solid ${props => props.valid ?  colors.primary : colors.error};
   margin: ${props => props.size};
-  margin-left: 0px;
-  margin-top: 0px;
+  margin-left: ${dimensions.inptMarginLeft};
+  margin-top: ${dimensions.inptMarginTop};
   padding: ${props => props.size};
-  font-family: "MulishRegular";
+  font-family: ${dimensions.fontFamily};
 `;
 
 const SPasswordInput = styled(SInput).attrs({

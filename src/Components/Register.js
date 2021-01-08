@@ -5,6 +5,7 @@ import {STextInput, SInput, SPasswordInput} from "./SInputText";
 import {STitle, SSubtitle, SRegular, SError} from "./SText";
 import {colors} from "../assets/colors";
 import {strings} from "../assets/strings-en";
+import {dimensions} from "../assets/dimensions";
 import Flex from '@react-css/flex';
 import { GoogleLogin } from 'react-google-login';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -15,13 +16,12 @@ const responseGoogle = (response) => {
 
 const Separator = styled.div`
 color: ${colors.white};
-border-top: 1px solid ${colors.regularLight};
-font-size: 1rem;
-font-family: "MulishRegular";
-margin: 0.5rem;
-padding: 0rem 0rem;
-width: 6em;
-height: 0.5em;
+border-top: ${dimensions.separatorBorder} solid ${colors.regularLight};
+font-size: ${dimensions.separatorFontSize} ;
+font-family: ${dimensions.separatorFontSize} ;
+margin: ${dimensions.separatorMargin};
+width: ${dimensions.separatorWidth};
+height: ${dimensions.separatorHeight};
 `;
 
 class Register extends Component{
